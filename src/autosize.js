@@ -40,6 +40,16 @@ try {
   };
 }
 
+const dispatchEvent = (el, name) => {
+  const evt = createEvent(name);
+  try {
+    el.dispatchEvent(evt);
+  } catch (err) {
+    // Firefox will throw an error on dispatchEvent for a detached element
+    // https://bugzilla.mozilla.org/show_bug.cgi?id=889376
+  }
+};
+
 function assign(ta) {
   if (!ta || !ta.nodeName || ta.nodeName !== "TEXTAREA" || map.has(ta)) return;
 
@@ -132,6 +142,8 @@ function assign(ta) {
   }
 
   function update() {
+    dispatchEvent("autosize:reisizing");
+
     resize();
 
     const styleHeight = Math.round(parseFloat(ta.style.height));
@@ -168,13 +180,7 @@ function assign(ta) {
 
     if (cachedHeight !== actualHeight) {
       cachedHeight = actualHeight;
-      const evt = createEvent("autosize:resized");
-      try {
-        ta.dispatchEvent(evt);
-      } catch (err) {
-        // Firefox will throw an error on dispatchEvent for a detached element
-        // https://bugzilla.mozilla.org/show_bug.cgi?id=889376
-      }
+      dispatchEvent("autosize:resized");
     }
   }
 
