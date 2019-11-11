@@ -142,7 +142,7 @@ function assign(ta) {
   }
 
   function update() {
-    dispatchEvent("autosize:reisizing");
+    dispatchEvent(ta, "autosize:resizing");
 
     resize();
 
@@ -180,7 +180,7 @@ function assign(ta) {
 
     if (cachedHeight !== actualHeight) {
       cachedHeight = actualHeight;
-      dispatchEvent("autosize:resized");
+      dispatchEvent(ta, "autosize:resized");
     }
   }
 
