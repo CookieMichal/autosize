@@ -74,7 +74,6 @@
 
     var heightOffset = null;
     var clientWidth = null;
-    var cachedHeight = null;
 
     function init() {
       var style = window.getComputedStyle(ta, null);
@@ -184,10 +183,7 @@
         }
       }
 
-      if (cachedHeight !== actualHeight) {
-        cachedHeight = actualHeight;
-        dispatchEvent(ta, "autosize:resized");
-      }
+      dispatchEvent(ta, "autosize:resized");
     }
 
     var pageResize = function pageResize() {

@@ -55,7 +55,6 @@ function assign(ta) {
 
   let heightOffset = null;
   let clientWidth = null;
-  let cachedHeight = null;
 
   function init() {
     const style = window.getComputedStyle(ta, null);
@@ -178,10 +177,7 @@ function assign(ta) {
       }
     }
 
-    if (cachedHeight !== actualHeight) {
-      cachedHeight = actualHeight;
-      dispatchEvent(ta, "autosize:resized");
-    }
+    dispatchEvent(ta, "autosize:resized");
   }
 
   const pageResize = () => {
