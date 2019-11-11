@@ -1,5 +1,5 @@
 /*!
-	autosize 4.0.2
+	autosize 4.1.1
 	license: MIT
 	http://www.jacklmoore.com/autosize
 */
@@ -157,7 +157,7 @@
     }
 
     function update() {
-      dispatchEvent("autosize:reisizing");
+      dispatchEvent(ta, "autosize:resizing");
 
       resize();
 
@@ -186,7 +186,7 @@
 
       if (cachedHeight !== actualHeight) {
         cachedHeight = actualHeight;
-        dispatchEvent("autosize:resized");
+        dispatchEvent(ta, "autosize:resized");
       }
     }
 
